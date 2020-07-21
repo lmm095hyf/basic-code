@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>省市县联动</title>
+<style type="text/css">
+select{
+	width:100px
+}
+</style>
+<script type="text/javascript" src="省市.js"></script>
+<script type="text/javascript">
+	function init() {
+		//添加省的选项
+		//document==>DOM 模型==>dociment object model 文档对象模型，用于操作html元素
+		//获取省的下拉框
+		var s=document.getElementById("sheng");
+		//循环省的数组
+		for(var i=0;i<provinces.length;i++){
+			//创建option元素 《option》beijing《/option》
+			var option=document.createElement("option");
+			option.innerText=provinces[i];
+			//appendChild 追加一个元素
+			s.appendChild(option);
+
+			//添加市的选项
+
+		}
+
+		var sh=document.getElementById("shi");
+		for (var i = 0; ji <citys[0].length ; i++) {
+			var option=document.createElement("option");
+			option.innerText=citys[0][i];
+			sh.appendChild(option);
+
+		}
+
+
+	}
+</script>
+</head>
+<body onload="init()">
+<div id="main">
+	省:<select id="sheng"></select>
+	市:<select id="shi"></select>
+	县:<select id="xian"></select>
+</div>
+</body>
+</html>

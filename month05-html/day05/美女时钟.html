@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>美女时钟</title>
+	<script type="text/javascript">
+		//当前的时钟对象的下标值
+		var timerIndex=0;
+		//时钟类
+		function Timer(image,x,y,r) {
+			this.image=image;
+			this.x=x;        //横坐标
+			this.y=y;        //纵坐标
+			this.r=r;        //旋转度数
+			this.size=14;
+			this.color='#fff';
+			this.bg='transparent';     //JS实现背景透明度可变，文字不透明的效果
+		}
+
+		//使用json格式定义数组----JavaScript对象表示法，它是一种基于文本，独立于语言的轻量级数据交换格式。
+
+		//定义（new）三个图片对象
+		var timers=[
+			new Timer('../imgs/imgs-05/girltime.jpg',329,76,37),
+			new Timer('../imgs/imgs-05/girltime.png',246,179,20),
+			new Timer('../imgs/imgs-05/girltime1.jpg'),
+		];
+
+		function changeImage(index) {
+			//获取标签
+			var img=document.getElementById("img");
+			//获取指定的时钟，设置对应的图片
+			img.src=timers[index].image;
+			//设置当前时钟的下标值
+			timerIndex=index;
+			//将timer属性值设置到input中
+			for(var name in timers[index]){
+				//name就是对象 的属性名
+				//name有多个属性对象，不唯一，但是id是唯一的值
+				//name的使用应该是document.form1.username.value; document.form1.password.value;
+				//区别与id的值，但是不清楚老师为什么这样写，但是结果应该不影响
+				//value   赋值
+				var input =document.getElementById(name);
+				input.value=timers[index][name];
+			}
+			//将timer属性设置到ul的样式中
+			//每秒钟刷新一次
+			refresh();
+		}
+
+		//修改指定样式的属性值
+		function changeStyle(name) {
+			var timer=timers[timerIndex];//获取当前时钟对象
+			//js获取和设置属性的方法 1.使用.号运算符
+			// 例如：a.name ,b.age,2.使用[]，a["name"]==>a.name
+			//表示鼠标点击的控件
+			var value=event.srcElement.value;
+			timer[name]=value;
+			refresh();
+		}
+
+		//刷新时钟和图片
+		function refresh() {
+			var timer=timers[timerIndex];
+			var ulTime=document.getElementById("ulTime");
+			var img=document.getElementById("img");
+			img.src=timer.image;
+			//imgdiv.style["background-color]=timer.bg
+			ulTime.style.backgroundColor=timer.bg;
+			//px是像素单位，很重要。不带的话系统无法检测
+			ulTime.style.left=timer.x+"px";
+			ulTime.style.top=timer.y+"px";
+			//设置不同浏览器的旋转样式
+
+/*			-webkit-transform：none | 类型
+
+			类型：scale：缩放，1为原始大小。scale(x)。正数放大，负数缩小。属性值为一个时，x/y轴同时缩放；属性值为两个值时，分别控制x、y轴的缩放。
+
+            rotate：水平旋转，属性值格式为Xdeg。(deg是“度”的意思)rotate(Xdeg)。X为正数时，顺时针旋转；为负数时，逆时针旋转
+
+			translate：平移，基于XY轴重新定位元素。translate(Xpx,Ypx)。属性值为一个时，x、y轴参数相同；为两个时，x、y轴分别定位
+
+			skew：将元素沿水平方向倾斜变形。skew(Xdeg,Ydeg)。这个比较难表述，想象一下平行四边形吧。属性值为一个时，x、y轴参数相同；为两个时，x、y轴各自倾斜
+
+			matrix：矩阵
+
+*/
+
+			//deg  度数
+			ulTime.style["-webkit-transform"]='rotate('+timer.r+'deg)';
+			ulTime.style["-moz-transform"]='rotate('+timer.r+'deg)';
+			ulTime.style["-o-transform"]='rotate('+timer.r+'deg)';
+			ulTime.style.color=timer.color;
+			ulTime.style.fontSize=timer.size+"px";
+
+		}
+		var weekNames=['天','一','二','三','四','五','六'];
+
+		//设置时钟上的日期时间
+		function begin() {
+			//初始化第一个时钟的位置
+			changeImage(0);
+			//匿名函数
+			setInterval(function () {
+				//Date时间函数
+				var now=new Date();
+				//获取星期数0周日，6周六
+				var day=now.getDay();
+				var week=weekNames[day];
+				document.getElementById("liWeek").innerText="星期"+week;
+				var hours=now.getHours();
+				var minutes=now.getMinutes();
+				var seconds=now.getSeconds();
+				document.getElementById("liTime").innerText=hours+":"+minutes+":"+seconds;
+			})
+
+		}
+	</script>
+</head>
+<body onload="begin()">
+	<div id="main">
+		<div id="imgdiv">
+			<img id="img" src="../imgs/imgs-05/girltime.png" width="630px">
+			<ul id="ulTime">
+				<li id="liWeek">星期一</li>
+				<li id="liTime">21:23:02</li>
+			</ul>
+		</div>
+		<div>
+			<span>
+				<label for="i0">图片1</label>
+				<input type="radio" name="i" value="0" id="i0"
+				onclick="changeImage(this.value)">
+			</span>
+			<span>
+				<label for="i1">图片2</label>
+				<input type="radio" name="i" value="1" id="i1"
+					   onclick="changeImage(this.value)">
+			</span>
+			<span>
+				<label for="i2">图片3</label>
+				<input type="radio" name="i" value="2" id="i2"
+					   onclick="changeImage(this.value)">
+			</span>
+		</div>
+		<div id="sytleattr">
+			<label>图片:</label><input id="image" style="width:480px" onchange="changeStyle('image')">
+			<label>X坐标:</label><input id="x" type="number" onchange="changeStyle('x')">
+			<label>Y坐标: </label><input id="y" type="number" onchange="changeStyle('y')">
+			<label>旋转: </label><input id="r" type="number" onchange="changeStyle('r')">
+			<label>字体大小: </label><input id="size" type="number" onchange="changeStyle('size')">
+			<label>字体颜色: </label><input id="color" onchange="changeStyle('color')">
+			<label>背景颜色: </label><input id="bg" onchange="changeStyle('bg')">
+		</div>
+	</div>
+</body>
+<style type="text/css">
+*{
+	list-style-type: none;
+	margin: 0px;
+	padding: 0px;
+	font-size: 18px;
+}
+body{
+	background: #eee;
+	text-align: center;
+}
+div{
+	margin: 10px;
+}
+#imgdiv {
+	display:inline-block;
+	position: relative;
+}
+ul{
+	position: absolute;
+	font-weight: bold;
+	color: #fff;
+	left: 0px;
+	top: 0px;
+}
+#sytleattr {
+	display:inline-block;
+	width:630px;
+	text-align: left;
+	line-height: 30px
+}
+#sytleattr>input {
+	width:80px;
+	text-align: center;
+}
+label{
+	display:inline-block;
+	width:100px;
+	text-align: right;
+	padding: 0px 5px
+}
+ul>li{
+	font-size: inherit;
+	color:inherit; 
+}
+</style>
+</html>

@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+	<title>课堂练习题</title>
+	<!-- 引入 cdn vue.js  -->
+	<script type="text/javascript" src="https://cdn.bootcdn.net/ajax/libs/vue/2.6.11/vue.min.js"></script>
+</head>
+<body>
+<fieldset id="E01">
+
+<!--	v-once  只能渲染一次，保证内容不可改变	-->
+	<legend v-once>{{title}}</legend>
+	<ul>
+		<li>{{h1}}</li>
+		<li>{{h2}}</li>
+		<li>{{h3}}</li>
+	</ul>
+</fieldset>
+<script type="text/javascript">
+	/**
+	 1.在legend中写入 "水泊梁山", 并且让其内容不可改变  ==> v-once
+	 2.在三个 li 中 写入三个水浒英雄的名字
+	 */
+	var vue1 = new Vue({
+		el : "#E01",
+		// 外部访问 data 使用 vue1.$data.
+		data : {
+			title : "博君一肖",
+			h1 : "肖战",
+			h2 : "王一博",
+			h3 : "王肖琑",
+		}
+	});
+	</script>
+<style>
+	/*斗篷样式，在延缓代码刷新的时候，系统自动隐藏源代码*/
+	[v-cloak]{
+		visibility: hidden;/*display:none的区别*/
+	}
+</style>
+<fieldset id="E02">
+	<legend v-cloak>{{title}}</legend>
+	<ul>
+		<li v-html="h1"></li>
+		<li v-html="h2"></li>
+		<li v-html="h3"></li>
+	</ul>
+</fieldset>
+<script type="text/javascript">
+	/**
+	 1.在legend中写入 "水泊梁山" 并加上"斗篷" ==> 网路速度很慢
+	 2.给每个li中添加一个按钮, 每个按钮上显示一个水浒英雄的名字  ==> v-html
+	 */
+	/*setTimeout函数 延迟时间   1000=1s*/
+	setTimeout( function(){
+		var vue2 = new Vue({
+			el : "#E02",
+			// 外部访问 data 使用 vue1.$data.
+			data : {
+				title : "博君一肖",
+				h1 : "<button>肖战</button>",
+				h2 : "<button>王一博</button>",
+				h3 : "<button>林木木</button>",
+			}
+		});
+	},  1000);
+	</script>
+
+
+<fieldset id="E03">
+	<legend>练习题3: 计算属性</legend>
+	<dl>
+		<dt>{{h.name}}</dt>
+		<dd>力量:{{h.power}}</dd>
+		<dd>智力:{{h.intel}}</dd>
+		<dd>敏捷:{{h.agile}}</dd>
+		<!-- <dd>综合战力:{{h.power + h.intel + h.agile}}</dd> -->
+		<dd>综合战力:{{sum}}</dd>
+	</dl>
+</fieldset>
+<script type="text/javascript">
+	var hero = {name:"花和尚鲁智深",power:98, intel:76, agile:73};
+	/**
+	 1. 将 heroe 对象的值设置到 dl 中
+	 3. 第 4 个 dd 使用计算属性算出其综合战力值 = 力量 + 智力 + 敏捷
+	 */
+	var vue3 = new Vue({
+		el : "#E03",
+		data : {
+			h : hero
+		},
+		// 计算属性
+		computed : {
+			// 定义计算属性函数
+			sum(){
+				return this.h.power + this.h.intel + this.h.agile;
+			}
+
+		}
+	});
+</script>
+
+
+<fieldset id="E04">
+<!--	v-bind	绑定-->
+	<legend >练习题4: 样式设置</legend>
+	<div v-bind:style=" { width:'120px' , textAlign:'center', border:'1px solid red',
+								display:'inline-block', padding:'5px' }  ">
+		<img v-bind:src="i1"  v-bind:height="height + 'px'"><br>
+		<span v-text="h1"></span> <!-- v-text == 胡子语法  {{  }}  -->
+	</div>
+	<div v-bind:style="mystyle">
+		<img  ><br> <span ></span>
+	</div>
+	<div >
+		<img  ><br> <span ></span>
+	</div>
+</fieldset>
+<script type="text/javascript">
+	/**
+	 1. img 中添加水浒英雄的图片, 并且使用属性设定高度为100px
+	 2. 给 div 设置: 宽度120px + 文字居中 + 边框 + 行内块 + 内边距5px
+	 3. 给 span 添加英雄名字
+	 */
+	var vue4 = new Vue({
+		el : "#E04",
+		data : {
+			height : 100,
+			i1 : "https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=2019458467,2699870190&fm=11&gp=0.jpg",
+			h1 : "大刀关胜",
+			i2 : "",
+			h2 : "",
+			i3 : "",
+			h4 : "",
+			mystyle : {
+				width:'120px' ,
+				textAlign:'center',
+				border:'1px solid red',
+				display:'inline-block',
+				padding:'5px'
+			}
+		}
+	});
+</script>
+
+
+	<style>
+	.border {
+		border: 2px solid blue;
+	}
+	
+	.text {
+		color: red;
+		text-align: center;
+	}
+	
+	.size {
+		width: 150px;
+		height: 150px; padding : 5px;
+		display: inline-block;
+		margin: 5px;
+		padding: 5px;
+	}
+	</style>
+<fieldset id="E05">
+	<legend>练习题5: class属性</legend>
+	<div id="div1" :class="{size:true}"> <!-- 语法糖 : 对某些语法的简写 -->
+		<img width="100px" src="https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=3602787553,827902630&fm=26&gp=0.jpg">
+		<br> 关注样式
+	</div>
+	<div id="div2" :class="mystyle">
+		<img width="100px" src="https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=3602787553,827902630&fm=26&gp=0.jpg">
+		<br> 关注样式
+	</div>
+	<div id="div3" :class="mystyle1">
+		<img width="100px" src="https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=3602787553,827902630&fm=26&gp=0.jpg">
+		<br> 关注样式
+	</div>
+</fieldset>
+<script type="text/javascript">
+	/**
+	 1. 将 .size 样式应用到 div1 上 ( 数组方式)
+	 2. 将 .border .size 样式应用到 div2 上 ( 对象方式)
+	 2. 将 .border .text .size 样式应用到 div3 上 ( 计算属性方式)
+	 */
+	var vue5 = new Vue({
+		el : "#E05",
+		data : {
+			mystyle : {size : true, border: true, text: false}
+		},
+		computed : {
+			mystyle1() {
+				return {size : true, border: true, text: true}
+			}
+
+		}
+	});
+</script>
+
+
+</body>
+</html>

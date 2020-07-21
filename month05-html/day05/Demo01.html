@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <script type="text/javascript">
+        //定义类
+        function Person(name ,age ) {
+            this.name=null;
+            this.age=age;
+        }
+        var p1=new Person("王一宝",22);
+        p1.sex='男';
+
+        var p2=new Object();
+        p2.name='肖战';
+        p2.age=29;
+        p2.sex='男';
+
+        //重点JSON
+        //{}=>new Object ()  java 的{} 表示数组
+        var p3={
+            name:'林木木',
+            age:22,
+            sex:'女'
+        };
+
+        alert(p1);
+        alert(p2);
+        alert(p3);
+        console.info(p1);
+        console.info(p2);
+        console.info(p3);
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>

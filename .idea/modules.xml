@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/month02-code/month02-code.iml" filepath="$PROJECT_DIR$/month02-code/month02-code.iml" />
+      <module fileurl="file://$PROJECT_DIR$/month03-code/month03-code.iml" filepath="$PROJECT_DIR$/month03-code/month03-code.iml" />
+      <module fileurl="file://$PROJECT_DIR$/month04-code/month04-code.iml" filepath="$PROJECT_DIR$/month04-code/month04-code.iml" />
+      <module fileurl="file://$PROJECT_DIR$/month04-html/month04-html.iml" filepath="$PROJECT_DIR$/month04-html/month04-html.iml" />
+      <module fileurl="file://$PROJECT_DIR$/month04-html/month04-html-补充代码.iml" filepath="$PROJECT_DIR$/month04-html/month04-html-补充代码.iml" />
+      <module fileurl="file://$PROJECT_DIR$/month05-html/month05--web.iml" filepath="$PROJECT_DIR$/month05-html/month05--web.iml" />
+      <module fileurl="file://$PROJECT_DIR$/month02-code/month05-Web.iml" filepath="$PROJECT_DIR$/month02-code/month05-Web.iml" />
+      <module fileurl="file://$PROJECT_DIR$/month05-data/month05-data.iml" filepath="$PROJECT_DIR$/month05-data/month05-data.iml" />
+      <module fileurl="file://$PROJECT_DIR$/month05-html/month05-html.iml" filepath="$PROJECT_DIR$/month05-html/month05-html.iml" />
+      <module fileurl="file://$PROJECT_DIR$/month05-java-html/month05-java-html.iml" filepath="$PROJECT_DIR$/month05-java-html/month05-java-html.iml" />
+      <module fileurl="file://$PROJECT_DIR$/month04-code/month05-web.iml" filepath="$PROJECT_DIR$/month04-code/month05-web.iml" />
+      <module fileurl="file://$PROJECT_DIR$/month05-web-html/month05-web-html.iml" filepath="$PROJECT_DIR$/month05-web-html/month05-web-html.iml" />
+      <module fileurl="file://$PROJECT_DIR$/month06-Web-javaEE/month06-Web-javaEE.iml" filepath="$PROJECT_DIR$/month06-Web-javaEE/month06-Web-javaEE.iml" />
+      <module fileurl="file://$PROJECT_DIR$/month06-data/month06-data.iml" filepath="$PROJECT_DIR$/month06-data/month06-data.iml" />
+      <module fileurl="file://$PROJECT_DIR$/month06-web/month06-web.iml" filepath="$PROJECT_DIR$/month06-web/month06-web.iml" />
+      <module fileurl="file://$PROJECT_DIR$/month07-code/month07-code.iml" filepath="$PROJECT_DIR$/month07-code/month07-code.iml" />
+    </modules>
+  </component>
+</project>

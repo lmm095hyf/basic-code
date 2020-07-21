@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>颜色选择器</title>
+<script type="text/javascript">
+	function Color(r, g, b) {
+		this.r = r;
+		this.g = g;
+		this.b = b;
+	}
+	var color;
+	var r1;
+	function changecolor() {
+		var r = document.getElementById("r");
+		var g = document.getElementById("g");
+		var b = document.getElementById("b");
+		color = new Color(r.value, g.value, b.value);
+		refresh();
+	}
+	function refresh() {
+		var c1 = document.getElementById("c1");
+		var c2 = document.getElementById("c2");
+		var clr = document.getElementById("clr");
+		c2.innerText ="rgb("+ color.r + "," + color.g + "," + color.b+")";
+
+		change(color.r);
+		var r = r1;
+		change(color.g);
+		var g = r1;
+		change(color.b);
+		var b = r1;
+
+		c1.innerText = "#" + r + g + b;
+		//实现变色
+		clr.style.backgroundColor = "#" + r + g + b;
+
+	}
+	function open(){
+		var r = document.getElementById("r");
+		var g = document.getElementById("g");
+		var b = document.getElementById("b");
+		color = new Color(r.value, g.value, b.value);
+		refresh();
+	}
+	//将rgb的值转成16进制值
+	function change(colorv) {
+		var a1 = colorv / 16;
+		var a2 = colorv % 16;
+
+		var a3 = parseInt(a1);
+		var a4 = parseInt(a2);
+		if (a3 < 10) {
+			if(a4>=10){
+				var r2 = a3;
+			}else{//a3,a4都为数字时
+				var r2 = a3 * 10;
+			}
+		} else {
+			switch (a3) {
+			case 10:
+				r2 = "a";break;
+			case 11:
+				r2 = "b";break;
+			case 12:
+				r2 = "c";break;
+			case 13:
+				r2 = "d";break;
+			case 14:
+				r2 = "e";break;
+			case 15:
+				r2 = "f";break;
+			}
+		}
+		if (a4 < 10) {
+			var r3 = a4;
+		} else {
+			switch (a4) {
+			case 10:
+				r3 = "a";break;
+			case 11:
+				r3 = "b";break;
+			case 12:
+				r3 = "c";break;
+			case 13:
+				r3 = "d";break;
+			case 14:
+				r3 = "e";break;
+			case 15:
+				r3 = "f";break;
+			}
+		}
+		r1 = r2 + r3;
+	}
+</script>
+</head>
+<body onload="open()">
+	<div id="app">
+		<div id="clr" style="background-color: green">
+			<span id="c1">#777666</span><br> <span id="c2">rgb(100,100,100)</span><br>
+		</div>
+		<label>红:</label><input id="r" type="range" min="0" max="255"
+			value="100" onchange="changecolor()"> <label>绿:</label><input
+			id="g" type="range" min="0" max="255" value="100"
+			onchange="changecolor()"> <label>蓝:</label><input id="b"
+			type="range" min="0" max="255" value="100"
+			onchange="changecolor()">
+	</div>
+</body>
+<style>
+body {
+	text-align: center;
+}
+
+#app {
+	display: inline-block;
+	width: 200px;
+	border: 1px solid #888;
+	padding: 5px
+}
+
+#app>* {
+	vertical-align: middle;
+}
+
+#clr {
+	height: 200px;
+	background: #eee;
+	display: table-cell;
+	width: 200px;
+	vertical-align: middle;
+	line-height: 40px
+}
+
+input {
+	width: 170px
+}
+
+span {
+	color: #fff;
+	font-weight: bold;
+	background: #14B9E8;
+	border: 1px solid #000;
+	margin: 5px;
+	padding: 5px;
+	border-radius: 5px
+}
+</style>
+</html>
